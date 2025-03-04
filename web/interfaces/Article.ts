@@ -4,4 +4,5 @@ export interface Article {
     content: string;
     cover: any;
     publishedAt: Date;
+    slug: string;
 }

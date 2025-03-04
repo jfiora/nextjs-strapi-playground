@@ -1,11 +1,13 @@
 'use client';
 import Link from 'next/link';
+import NavbarLink from './Navbar-link';
 import { useState } from 'react';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
 
     const menuItems = [
+        { title: 'Home', href: '/' },
         { title: 'Sindicato', href: '/sindicato' },
         { title: 'Secretarías', href: '/secretarias' },
         { title: 'Empresas', href: '/empresas' },
@@ -15,25 +17,17 @@ export default function Navbar() {
     ];
 
     return (
-        <nav className='bg-blue-900 text-white'>
-            <div className='max-w-7xl mx-auto px-4'>
-                <div className='flex justify-between items-center h-16'>
-                    <div className='flex items-center'>
-                        <Link href='/' className='text-xl font-bold'>
-                            Sindicato de Camioneros
-                        </Link>
-                    </div>
-
+        <nav className='bg-white text-black'>
+            <div className='max-w-7xl mx-auto px-5'>
+                <div className='flex justify-between items-center'>
                     {/* Desktop Menu */}
-                    <div className='hidden md:flex space-x-4'>
+                    <div className='hidden md:flex'>
                         {menuItems.map((item) => (
-                            <Link
+                            <NavbarLink
                                 key={item.href}
                                 href={item.href}
-                                className='hover:bg-blue-800 px-3 py-2 rounded'
-                            >
-                                {item.title}
-                            </Link>
+                                title={item.title}
+                            />
                         ))}
                     </div>
 
@@ -41,7 +35,7 @@ export default function Navbar() {
                     <div className='md:hidden'>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className='text-white hover:bg-blue-800 px-2 py-1 rounded'
+                            className='text-gray-600 hover:text-red-600 px-2 py-1'
                         >
                             <span className='sr-only'>Open menu</span>☰
                         </button>
@@ -52,13 +46,34 @@ export default function Navbar() {
                 {isOpen && (
                     <div className='md:hidden'>
                         {menuItems.map((item) => (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className='block px-3 py-2 hover:bg-blue-800'
-                            >
-                                {item.title}
-                            </Link>
+                            <div key={item.href}>
+                                <Link
+                                    href={item.href}
+                                    className='block px-4 py-2 hover:bg-gray-100 hover:text-red-600'
+                                >
+                                    {item.title}
+                                </Link>
+                                <div className='pl-4 bg-gray-50'>
+                                    <Link
+                                        href='#'
+                                        className='block px-4 py-2 hover:bg-gray-100'
+                                    >
+                                        Submenu 1
+                                    </Link>
+                                    <Link
+                                        href='#'
+                                        className='block px-4 py-2 hover:bg-gray-100'
+                                    >
+                                        Submenu 2
+                                    </Link>
+                                    <Link
+                                        href='#'
+                                        className='block px-4 py-2 hover:bg-gray-100'
+                                    >
+                                        Submenu 3
+                                    </Link>
+                                </div>
+                            </div>
                         ))}
                     </div>
                 )}

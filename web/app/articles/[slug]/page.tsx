@@ -1,0 +1,59 @@
+import Image from 'next/image';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import SidebarArticle from '@/components/Sidebar-article';
+
+async function getArticle(slug: string) {
+    const STRAPI_URL = 'http://localhost:1337';
+    const response = await fetch(
+        `${STRAPI_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*`,
+        { cache: 'no-store' }
+    );
+    const data = await response.json();
+    return data.data[0];
+}
+
+export default async function ArticlePage({
+    params,
+}: {
+    params: { slug: string };
+}) {
+    const STRAPI_URL = 'http://localhost:1337';
+    const article = await getArticle(params.slug);
+
+    if (!article) return <div>Loading...</div>;
+
+    return (
+        <div className='min-h-screen flex flex-col bg-gray-300'>
+            <Navbar />
+
+            <main className='flex w-full max-w-4xl mx-auto px-4 py-8'>
+                <article className='bg-white shadow-lg rounded-lg overflow-hidden w-9/12'>
+                    <div className='relative h-96'>
+                        <Image
+                            className='object-cover'
+                            src={STRAPI_URL + article.cover.url}
+                            alt={article.title}
+                            fill
+                            priority
+                        />
+                    </div>
+                    <div className='p-6'>
+                        <span className='inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-4'>
+                            GREMIALES
+                        </span>
+                        <h1 className='text-3xl font-bold mb-4'>
+                            {article.title}
+                        </h1>
+                        <div className='prose max-w-none'>
+                            {article.content}
+                        </div>
+                    </div>
+                </article>
+                <SidebarArticle />
+            </main>
+
+            <Footer />
+        </div>
+    );
+}

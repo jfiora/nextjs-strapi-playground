@@ -3,6 +3,7 @@
 // Import React hooks and Image component
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Article } from '@/interfaces/Article';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -20,7 +21,7 @@ export default function Home() {
         getArticles();
     }, []);
     return (
-        <div className='min-h-screen flex flex-col bg-white'>
+        <div className='min-h-screen flex flex-col bg-gray-300'>
             <Navbar />
 
             <main className='flex-grow w-full max-w-7xl mx-auto px-4'>
@@ -54,9 +55,12 @@ export default function Home() {
                                     <p className='text-gray-600 text-sm mb-4 line-clamp-2'>
                                         {article.content}
                                     </p>
-                                    <button className='text-blue-600 text-sm hover:underline'>
+                                    <Link
+                                        href={`/articles/${article.slug}`}
+                                        className='text-blue-600 text-sm hover:underline'
+                                    >
                                         Leer más...
-                                    </button>
+                                    </Link>
                                 </div>
                             </article>
                         ))}
