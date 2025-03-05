@@ -23,7 +23,7 @@ const SidebarArticle = () => {
             <div className='p-4 border-b border-gray-300'>
                 <h1 className='text-xs font-bold text-black'>NUESTRA MISIÓN</h1>
             </div>
-            <div className='p-4 border-b border-gray-300'>
+            <div className='p-4'>
                 <p className='text-xs text-gray-500'>
                     Defender y representar ante el Estado y los empleadores los
                     intereses profesionales e individuales de los trabajadores
