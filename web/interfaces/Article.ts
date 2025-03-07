@@ -1,3 +1,8 @@
+enum newsType {
+    NEWS = 'news',
+    EVENT = 'event',
+    ARTICLE = 'article',
+}
 export interface Article {
     id: string;
     title: string;
@@ -5,4 +10,5 @@ export interface Article {
     cover: any;
     publishedAt: Date;
     slug: string;
+    type: newsType;
 }

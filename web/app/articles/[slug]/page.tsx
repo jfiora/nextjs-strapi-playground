@@ -20,7 +20,8 @@ export default async function ArticlePage({
     params: { slug: string };
 }) {
     const STRAPI_URL = 'http://localhost:1337';
-    const article = await getArticle(params.slug);
+    const slug = await params.slug;
+    const article = await getArticle(slug);
 
     if (!article) return <div>Loading...</div>;
 
@@ -30,7 +31,10 @@ export default async function ArticlePage({
 
             <main className='flex-grow w-full max-w-7xl mx-auto px-4'>
                 <div className='flex w-full py-8'>
-                    <article className='bg-white overflow-hidden w-9/12'>
+                    <article className='bg-white overflow-hidden px-8 py-6 w-9/12'>
+                        <h1 className='text-4xl font-bold mb-4 text-black'>
+                            {article.title}
+                        </h1>
                         <div className='relative h-96'>
                             <Image
                                 className='object-cover'
@@ -44,9 +48,6 @@ export default async function ArticlePage({
                             <span className='inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-4'>
                                 GREMIALES
                             </span>
-                            <h1 className='text-3xl font-bold mb-4'>
-                                {article.title}
-                            </h1>
                             <div className='prose max-w-none'>
                                 {article.content}
                             </div>
