@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const SidebarArticle = () => {
+const SidebarHomeLeft = () => {
     return (
         <div className='bg-white border-x border-gray-300'>
             <Image
@@ -43,4 +43,4 @@ const SidebarArticle = () => {
     );
 };
 
-export default SidebarArticle;
+export default SidebarHomeLeft;

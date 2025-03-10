@@ -30,8 +30,8 @@ export default async function ArticlePage({
             <Navbar />
 
             <main className='flex-grow w-full max-w-7xl mx-auto px-4'>
-                <div className='flex w-full py-8'>
-                    <article className='bg-white overflow-hidden px-8 py-6 w-9/12'>
+                <div className='grid grid-cols-12 w-full py-8'>
+                    <article className='bg-white overflow-hidden px-8 py-6 col-span-9'>
                         <h1 className='text-4xl font-bold mb-4 text-black'>
                             {article.title}
                         </h1>
@@ -53,7 +53,9 @@ export default async function ArticlePage({
                             </div>
                         </div>
                     </article>
-                    <SidebarArticle />
+                    <div className='col-span-3'>
+                        <SidebarArticle />
+                    </div>
                 </div>
                 <Breadcrumb />
                 <Footer />
