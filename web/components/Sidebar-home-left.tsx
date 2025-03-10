@@ -8,8 +8,9 @@ const SidebarHomeLeft = () => {
                 src={'/logo-con-texto.jpg'}
                 alt='SidebarArticle'
                 className='w-full'
-                width={100}
-                height={100}
+                width={1000}
+                height={1000}
+                quality={100}
             />
             <div className='p-4 border-b border-gray-300'>
                 <Image

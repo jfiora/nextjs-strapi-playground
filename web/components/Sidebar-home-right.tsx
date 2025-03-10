@@ -1,43 +1,23 @@
+import { Article } from '@/interfaces/Article';
 import React from 'react';
-import Image from 'next/image';
+import ArticleImageExpand from './Article-image-expand';
 
-const SidebarHomeRight = () => {
+const SidebarHomeRight = ({ articles }: { articles: Article[] }) => {
     return (
-        <div className='bg-white border-x border-gray-300'>
-            <Image
-                src={'/logo-con-texto.jpg'}
-                alt='SidebarArticle'
-                className='w-full'
-                width={100}
-                height={100}
-            />
+        <div className='bg-white h-full border-x border-gray-300'>
             <div className='p-4 border-b border-gray-300'>
-                <Image
-                    src={'/avenida_ch.jpg'}
-                    alt='SidebarArticle'
-                    className='w-full'
-                    width={100}
-                    height={100}
-                />
-            </div>
-            <div className='p-4 border-b border-gray-300'>
-                <h1 className='text-xs font-bold text-black'>NUESTRA MISIÓN</h1>
+                <h1 className='text-xs font-bold text-black'>NOVEDADES</h1>
             </div>
             <div className='p-4'>
-                <p className='text-xs text-gray-500'>
-                    Defender y representar ante el Estado y los empleadores los
-                    intereses profesionales e individuales de los trabajadores
-                    ocupados en la actividad económica del transporte de carga
-                    por automotor.<br></br>
-                    <br></br> Promover la participación de la Entidad Sindical
-                    en los organismos Nacionales, Provinciales, Municipales e
-                    Internacionales.<br></br>
-                    <br></br> Promover la unión y la organización gremial de los
-                    trabajadores de la actividad de carga por automotor.
-                    <br></br>
-                    <br></br> Promover la consolidación del espíritu sindical y
-                    asegurar la efectiva militancia sindical.
-                </p>
+                {articles
+                    .filter((e) => e.category?.slug == 'novedades')
+                    .map((e) => (
+                        <ArticleImageExpand
+                            key={e.id}
+                            href={e.slug}
+                            imageHref={e.cover?.url}
+                        />
+                    ))}
             </div>
         </div>
     );

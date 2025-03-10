@@ -17,6 +17,8 @@ export default function Home() {
     const getArticles = async () => {
         const response = await fetch(`${STRAPI_URL}/api/articles?populate=*`);
         const data = await response.json();
+        console.log(data.data);
+
         setArticles(data.data);
     };
     useEffect(() => {
@@ -48,16 +50,18 @@ export default function Home() {
                                             className='bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300'
                                         >
                                             <div className='relative h-48'>
-                                                <Image
-                                                    className='object-cover'
-                                                    src={
-                                                        STRAPI_URL +
-                                                        article.cover.url
-                                                    }
-                                                    alt={article.title}
-                                                    fill
-                                                    priority
-                                                />
+                                                {article.cover?.url && (
+                                                    <Image
+                                                        className='object-cover'
+                                                        src={
+                                                            STRAPI_URL +
+                                                            article.cover.url
+                                                        }
+                                                        alt={article.title}
+                                                        fill
+                                                        priority
+                                                    />
+                                                )}
                                             </div>
                                             <div className='p-4'>
                                                 <span className='inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2'>
@@ -87,7 +91,7 @@ export default function Home() {
 
                         {/* Right Sidebar */}
                         <div className='col-span-2'>
-                            <SidebarHomeRight />
+                            <SidebarHomeRight articles={articles} />
                         </div>
                     </div>
                 </div>

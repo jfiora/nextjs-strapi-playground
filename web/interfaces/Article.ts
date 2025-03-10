@@ -8,6 +8,7 @@ export interface Article {
     title: string;
     content: string;
     cover: any;
+    category: any;
     publishedAt: Date;
     slug: string;
     type: newsType;
