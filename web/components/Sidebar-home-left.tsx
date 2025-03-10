@@ -3,9 +3,17 @@ import Image from 'next/image';
 
 const SidebarHomeLeft = () => {
     return (
-        <div className='bg-white border-x border-gray-300'>
+        <div className='bg-white h-full border-x border-gray-300'>
             <Image
                 src={'/logo-con-texto.jpg'}
+                alt='SidebarArticle'
+                className='w-full'
+                width={1000}
+                height={1000}
+                quality={100}
+            />
+            <Image
+                src={'/fondo-telefono.jpg'}
                 alt='SidebarArticle'
                 className='w-full'
                 width={1000}

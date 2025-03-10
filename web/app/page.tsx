@@ -9,6 +9,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SidebarHomeRight from '@/components/Sidebar-home-right';
 import SidebarHomeLeft from '@/components/Sidebar-home-left';
+import Breadcrumb from '@/components/Breadcrumb';
+import ArticleMain from '@/components/Article-main';
 
 export default function Home() {
     const STRAPI_URL = 'http://localhost:1337';
@@ -17,7 +19,6 @@ export default function Home() {
     const getArticles = async () => {
         const response = await fetch(`${STRAPI_URL}/api/articles?populate=*`);
         const data = await response.json();
-        console.log(data.data);
 
         setArticles(data.data);
     };
@@ -25,11 +26,11 @@ export default function Home() {
         getArticles();
     }, []);
     return (
-        <div className='min-h-screen flex flex-col'>
+        <div className='min-h-screen flex flex-col bg-gray-100'>
             <Navbar />
 
-            <main className='flex-grow bg-gray-100'>
-                <div className='max-w-7xl mx-auto px-4'>
+            <main className='flex-grow w-full max-w-7xl mx-auto px-4'>
+                <div className='w-full mx-auto px-4'>
                     <div className='grid grid-cols-12 py-8'>
                         {/* Left Sidebar */}
                         <div className='col-span-3'>
@@ -38,52 +39,22 @@ export default function Home() {
 
                         {/* Main Content */}
                         <div className='col-span-7'>
-                            <div className='bg-white'>
-                                <h2 className='text-3xl font-bold mb-6'>
-                                    Novedades Sindicales
-                                </h2>
+                            <div className='bg-white h-full'>
+                                <div className='p-4 border-b border-gray-300'>
+                                    <h1 className='text-xs font-bold text-black'>
+                                        NOVEDADES SINDICALES
+                                    </h1>
+                                </div>
 
-                                <div className='grid grid-cols-1 gap-6'>
+                                <div className='grid grid-cols-3'>
                                     {articles.map((article) => (
-                                        <article
+                                        <ArticleMain
+                                            category={article.category?.name}
+                                            href={article.slug}
+                                            imageHref={article.cover?.url}
+                                            title={article.title}
                                             key={article.id}
-                                            className='bg-white border rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300'
-                                        >
-                                            <div className='relative h-48'>
-                                                {article.cover?.url && (
-                                                    <Image
-                                                        className='object-cover'
-                                                        src={
-                                                            STRAPI_URL +
-                                                            article.cover.url
-                                                        }
-                                                        alt={article.title}
-                                                        fill
-                                                        priority
-                                                    />
-                                                )}
-                                            </div>
-                                            <div className='p-4'>
-                                                <span className='inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2'>
-                                                    {(
-                                                        article.type ||
-                                                        'GREMIALES'
-                                                    ).toUpperCase()}
-                                                </span>
-                                                <h3 className='text-lg font-bold mb-2'>
-                                                    {article.title}
-                                                </h3>
-                                                <p className='text-gray-600 text-sm mb-4 line-clamp-2'>
-                                                    {article.content}
-                                                </p>
-                                                <Link
-                                                    href={`/articles/${article.slug}`}
-                                                    className='text-blue-600 text-sm hover:underline'
-                                                >
-                                                    Leer más...
-                                                </Link>
-                                            </div>
-                                        </article>
+                                        />
                                     ))}
                                 </div>
                             </div>
@@ -95,6 +66,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
+                <Breadcrumb />
                 <Footer />
             </main>
         </div>
