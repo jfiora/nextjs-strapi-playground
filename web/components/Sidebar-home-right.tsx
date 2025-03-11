@@ -10,8 +10,8 @@ const SidebarHomeRight = ({ articles }: { articles: Article[] }) => {
             </div>
             <div className='p-4'>
                 {articles
-                    .filter((e) => e.category?.slug == 'novedades')
-                    .map((e) => (
+                    ?.filter((e) => e.category?.slug == 'novedades')
+                    ?.map((e) => (
                         <ArticleImageExpand
                             key={e.id}
                             href={e.slug}

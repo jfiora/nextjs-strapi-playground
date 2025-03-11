@@ -12,7 +12,7 @@ export default function Breadcrumb() {
     // Create breadcrumb items from pathname
     const getBreadcrumbs = () => {
         const paths = pathname.split('/').filter((path) => path);
-        return paths.map((path, index) => {
+        return paths?.map((path, index) => {
             const href = '/' + paths.slice(0, index + 1).join('/');
             // Decode URL-encoded strings and capitalize first letter
             const label = decodeURIComponent(path).replace(/-/g, ' ');
@@ -46,7 +46,7 @@ export default function Breadcrumb() {
                 >
                     Inicio
                 </Link>
-                {getBreadcrumbs().map((item, index) => (
+                {getBreadcrumbs()?.map((item, index) => (
                     <div key={item.href} className='flex items-center'>
                         <FaChevronRight react-icons='mx-2 text-gray-500' />
                         <Link

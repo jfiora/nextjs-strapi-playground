@@ -44,7 +44,7 @@ export default function Home() {
                             </div>
 
                             <div className='grid grid-cols-3'>
-                                {articles.map((article) => (
+                                {articles?.map((article) => (
                                     <ArticleMain
                                         category={article.category?.name}
                                         href={article.slug}

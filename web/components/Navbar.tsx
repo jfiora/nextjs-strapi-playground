@@ -22,7 +22,7 @@ export default function Navbar() {
                 <div className='flex justify-between items-center'>
                     {/* Desktop Menu */}
                     <div className='hidden md:flex'>
-                        {menuItems.map((item) => (
+                        {menuItems?.map((item) => (
                             <NavbarLink
                                 key={item.href}
                                 href={item.href}
@@ -45,7 +45,7 @@ export default function Navbar() {
                 {/* Mobile Menu */}
                 {isOpen && (
                     <div className='md:hidden'>
-                        {menuItems.map((item) => (
+                        {menuItems?.map((item) => (
                             <div key={item.href}>
                                 <Link
                                     href={item.href}
