@@ -2,8 +2,6 @@
 
 // Import React hooks and Image component
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { Article } from '@/interfaces/Article';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -30,40 +28,38 @@ export default function Home() {
             <Navbar />
 
             <main className='flex-grow w-full max-w-7xl mx-auto px-4'>
-                <div className='w-full mx-auto px-4'>
-                    <div className='grid grid-cols-12 py-8'>
-                        {/* Left Sidebar */}
-                        <div className='col-span-3'>
-                            <SidebarHomeLeft />
-                        </div>
+                <div className='grid grid-cols-12 py-8'>
+                    {/* Left Sidebar */}
+                    <div className='col-span-3'>
+                        <SidebarHomeLeft />
+                    </div>
 
-                        {/* Main Content */}
-                        <div className='col-span-7'>
-                            <div className='bg-white h-full'>
-                                <div className='p-4 border-b border-gray-300'>
-                                    <h1 className='text-xs font-bold text-black'>
-                                        NOVEDADES SINDICALES
-                                    </h1>
-                                </div>
+                    {/* Main Content */}
+                    <div className='col-span-7'>
+                        <div className='bg-white h-full'>
+                            <div className='p-4 border-b border-gray-300'>
+                                <h1 className='text-xs font-bold text-black'>
+                                    NOVEDADES SINDICALES
+                                </h1>
+                            </div>
 
-                                <div className='grid grid-cols-3'>
-                                    {articles.map((article) => (
-                                        <ArticleMain
-                                            category={article.category?.name}
-                                            href={article.slug}
-                                            imageHref={article.cover?.url}
-                                            title={article.title}
-                                            key={article.id}
-                                        />
-                                    ))}
-                                </div>
+                            <div className='grid grid-cols-3'>
+                                {articles.map((article) => (
+                                    <ArticleMain
+                                        category={article.category?.name}
+                                        href={article.slug}
+                                        imageHref={article.cover?.url}
+                                        title={article.title}
+                                        key={article.id}
+                                    />
+                                ))}
                             </div>
                         </div>
+                    </div>
 
-                        {/* Right Sidebar */}
-                        <div className='col-span-2'>
-                            <SidebarHomeRight articles={articles} />
-                        </div>
+                    {/* Right Sidebar */}
+                    <div className='col-span-2'>
+                        <SidebarHomeRight articles={articles} />
                     </div>
                 </div>
                 <Breadcrumb />
