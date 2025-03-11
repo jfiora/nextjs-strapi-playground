@@ -3,15 +3,17 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SidebarArticle from '@/components/Sidebar-article';
 import Breadcrumb from '@/components/Breadcrumb';
+import ArticleColumnDetails from '@/components/Article-column-details';
+import { Article } from '@/interfaces/Article';
 
-async function getArticle(slug: string) {
+async function getArticle(slug: string): Promise<Article> {
     const STRAPI_URL = 'http://localhost:1337';
     const response = await fetch(
         `${STRAPI_URL}/api/articles?filters[slug][$eq]=${slug}&populate=*`,
         { cache: 'no-store' }
     );
     const data = await response.json();
-    return data.data[0];
+    return data.data[0] as Article;
 }
 
 export default async function ArticlePage({
@@ -35,21 +37,24 @@ export default async function ArticlePage({
                         <h1 className='text-4xl font-bold mb-4 text-black'>
                             {article.title}
                         </h1>
-                        <div className='relative h-96'>
-                            <Image
-                                className='object-cover'
-                                src={STRAPI_URL + article.cover.url}
-                                alt={article.title}
-                                fill
-                                priority
-                            />
-                        </div>
-                        <div className='p-6'>
-                            <span className='inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-4'>
-                                GREMIALES
-                            </span>
-                            <div className='prose max-w-none'>
-                                {article.content}
+                        <div className='grid grid-cols-12 w-full'>
+                            <div className='col-span-3'>
+                                <ArticleColumnDetails />
+                            </div>
+                            <div className='col-span-9'>
+                                <div>
+                                    <Image
+                                        className='object-cover'
+                                        src={STRAPI_URL + article.cover.url}
+                                        alt={article.title}
+                                        width={500}
+                                        height={500}
+                                        quality={100}
+                                    />
+                                </div>
+                                <div className='prose max-w-none text-black py-4'>
+                                    {article.description}
+                                </div>
                             </div>
                         </div>
                     </article>

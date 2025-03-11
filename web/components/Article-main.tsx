@@ -17,29 +17,37 @@ export default function ArticleMain({
     const STRAPI_URL = 'http://localhost:1337';
 
     return (
-        <div className='p-4 border-b border-gray-300'>
-            <Link href={href}>
+        <div className='p-4 border-x border-b'>
+            <Link href={`/articles/${href}`}>
                 <div className='group cursor-pointer'>
-                    {imageHref && (
-                        <div className='relative aspect-video mb-3'>
-                            <Image
-                                src={STRAPI_URL + imageHref}
-                                alt={title}
-                                fill
-                                className='object-cover'
-                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                            />
-                        </div>
-                    )}
-                    <div className='flex flex-col gap-2'>
-                        {category && (
-                            <span className='text-gray-400 text-sm font-semibold'>
-                                {category}
-                            </span>
-                        )}
-                        <h2 className='text-gray-900 font-semibold hover:text-red-600'>
+                    {/* Image Container with fixed dimensions */}
+                    <div className='relative w-full h-[200px] mb-3 overflow-hidden'>
+                        <Image
+                            src={STRAPI_URL + imageHref}
+                            alt={title}
+                            fill
+                            className='object-cover group-hover:scale-105 transition-transform duration-300'
+                            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                        />
+                    </div>
+
+                    {/* Category Tag */}
+                    <div className='mb-2'>
+                        <span className='bg-blue-600 text-white text-xs font-medium px-2.5 py-0.5'>
+                            {(category || 'GREMIALES').toUpperCase()}
+                        </span>
+                    </div>
+
+                    <div className='flex flex-col gap-5'>
+                        {/* Title */}
+                        <h2 className='text-xs font-semibold text-gray-900 line-clamp-2 hover:text-red-600'>
                             {title}
                         </h2>
+
+                        {/* Link to article */}
+                        <span className='text-gray-400 text-sm font-semibold hover:text-red-600'>
+                            Leer más...
+                        </span>
                     </div>
                 </div>
             </Link>

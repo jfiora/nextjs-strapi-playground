@@ -11,5 +11,6 @@ export interface Article {
     category: any;
     publishedAt: Date;
     slug: string;
+    description: string;
     type: newsType;
 }
