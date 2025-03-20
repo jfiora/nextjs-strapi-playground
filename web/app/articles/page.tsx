@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumb from '@/components/Breadcrumb';
 import { Article } from '@/interfaces/Article';
+import ArticleMain from '@/components/Article-main';
 
 async function getArticles(): Promise<Article[]> {
     const STRAPI_URL = 'http://localhost:1337';
@@ -45,38 +46,15 @@ export default async function ArticlesPage() {
                     </div>
 
                     {/* Articles Grid */}
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 bg-white '>
                         {articles.map((article) => (
-                            <Link
-                                href={`/articles/${article.slug}`}
+                            <ArticleMain
                                 key={article.id}
-                                className='bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300'
-                            >
-                                <div className='relative h-48'>
-                                    <Image
-                                        src={STRAPI_URL + article.cover.url}
-                                        alt={article.title}
-                                        fill
-                                        className='object-cover'
-                                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                                    />
-                                </div>
-                                <div className='p-4'>
-                                    <h2 className='text-xl font-bold mb-2 text-gray-800'>
-                                        {article.title}
-                                    </h2>
-                                    <p className='text-gray-600 line-clamp-3'>
-                                        {article.description}
-                                    </p>
-                                    <div className='mt-4 flex items-center text-sm text-gray-500'>
-                                        <span>
-                                            {new Date(
-                                                article.publishedAt
-                                            ).toLocaleDateString()}
-                                        </span>
-                                    </div>
-                                </div>
-                            </Link>
+                                category={article.category?.name}
+                                href={article.slug}
+                                imageHref={article.cover?.url}
+                                title={article.title}
+                            />
                         ))}
                     </div>
                 </div>
