@@ -1,33 +1,38 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '../public/logo-con-texto.jpg';
 
 export default function Footer() {
     return (
         <footer className='bg-black text-gray-400 text-sm'>
             <div className='max-w-7xl mx-auto px-4 py-6'>
                 <div className='flex flex-col md:flex-row justify-between'>
-                    <div>
-                        <h2 className='text-white text-2xl font-bold mb-4'>
-                            CAMIONEROS
-                        </h2>
-                        <p className='mb-1'>
-                            Copyright © 2025 Sindicato de Camioneros. Todos los
-                            derechos reservados. Personeria Gremial N° 6
-                        </p>
-                        <p className='mb-1'>
-                            San José 1781 (1136) CABA - Argentina
-                        </p>
-                        <p className='text-xs'>
-                            Superintendencia de Servicios de Salud - Organo de
-                            Control - 0800-222-SALUD (72583) -
-                            <Link
-                                href='http://www.ssalud.gob.ar'
-                                className='hover:text-white'
-                            >
-                                {' '}
-                                www.ssalud.gob.ar
-                            </Link>{' '}
-                            - R.N.O.S. 1-0580-4
-                        </p>
+                    <div className='flex items-center gap-4'>
+                        <Image src={Logo} alt='Logo' width={200} height={200} />
+                        <div className='w-1/2'>
+                            <h2 className='text-white text-2xl font-bold mb-4'>
+                                CAMIONEROS
+                            </h2>
+                            <p className='mb-1'>
+                                Copyright © 2025 Sindicato de Camioneros. Todos
+                                los derechos reservados. Personeria Gremial N° 6
+                            </p>
+                            <p className='mb-1'>
+                                San José 1781 (1136) CABA - Argentina
+                            </p>
+                            <p className='text-xs'>
+                                Superintendencia de Servicios de Salud - Organo
+                                de Control - 0800-222-SALUD (72583) -
+                                <Link
+                                    href='http://www.ssalud.gob.ar'
+                                    className='hover:text-white'
+                                >
+                                    {' '}
+                                    www.ssalud.gob.ar
+                                </Link>{' '}
+                                - R.N.O.S. 1-0580-4
+                            </p>
+                        </div>
                     </div>
 
                     <div className='grid grid-cols-3 gap-8 mt-6 md:mt-0'>
