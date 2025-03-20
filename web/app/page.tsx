@@ -41,7 +41,7 @@ export default function Home() {
                                     AFILIACIONES
                                 </h1>
                             </div>
-                            <div className='grid grid-cols-4 py-8 gap-8'>
+                            <div className='flex flex-col items-center justify-center py-8 gap-8'>
                                 <p className='text-black text-xs font-semibold text-center'>
                                     Lorem ipsum dolor sit amet, consectetur
                                     adipiscing elit, sed do eiusmod tempor

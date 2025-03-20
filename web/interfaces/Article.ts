@@ -13,4 +13,6 @@ export interface Article {
     slug: string;
     description: string;
     type: newsType;
+    createdAt: Date;
+    updatedAt: Date;
 }
