@@ -5,7 +5,7 @@ import Logo from '../public/logo-con-texto.jpg';
 export default function Footer() {
     return (
         <footer className='bg-black text-gray-400 text-sm'>
-            <div className='max-w-7xl mx-auto px-4 py-6'>
+            <div className='max-w-7xl mx-auto px-4 py-10'>
                 <div className='flex flex-col md:flex-row justify-between'>
                     <div className='flex items-center gap-4'>
                         <Image src={Logo} alt='Logo' width={200} height={200} />
